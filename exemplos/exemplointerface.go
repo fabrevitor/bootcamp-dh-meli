@@ -1,6 +1,8 @@
 //Produtos e-commerce
 package main
 
+import "fmt"
+
 type produto struct {
 	tipo  string
 	nome  string
@@ -84,4 +86,16 @@ func main() {
 	// casasBahia.Adicionar(geladeiraBrastemp)
 
 	// fmt.Println(casasBahia.Total())
+
+	//Teste SLICE
+	produtos := []string{"TV", "Cel", "Xpto"}
+
+	for _, produto := range produtos {
+
+		fmt.Println("\nProduto ", produto)
+	}
+	//If Declaracao Curta
+	if teste := 5; teste == 5 {
+		fmt.Println("Declaracao Curtaß")
+	}
 }
