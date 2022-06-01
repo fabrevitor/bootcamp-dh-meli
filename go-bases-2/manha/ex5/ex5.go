@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 /*
 Exercício 5 - Cálculo da quantidade de alimento
@@ -36,6 +39,58 @@ amount+= animaldog(5)
 amount+= animalCat(8)
 */
 
+const (
+	dog       = "dog"
+	cat       = "cat"
+	hamster   = "hamster"
+	tarantula = "tarantula"
+)
+
+func dogFunc(quantity int) int {
+	return quantity * 10000
+}
+
+func catFunc(quantity int) int {
+	return quantity * 5000
+}
+
+func hamsterFunc(quantity int) int {
+	return quantity * 250
+}
+
+func tarantulaFunc(quantity int) int {
+	return quantity * 150
+}
+
+func Animal(typeFunc string) (func(quantity int) int, error) {
+
+	switch typeFunc {
+	case dog:
+		return dogFunc, nil
+	case cat:
+		return catFunc, nil
+	case hamster:
+		return hamsterFunc, nil
+	case tarantula:
+		return tarantulaFunc, nil
+	default:
+		return nil, errors.New("invalid func")
+	}
+
+}
+
 func main() {
-	fmt.Println("test")
+	dfunc, _ := Animal(dog)
+	fmt.Printf("quandidade de alimento do(s) cachorro(s) (em gramas): %d gramas", dfunc(5))
+	fmt.Println("")
+
+	cfunc, _ := Animal(cat)
+	fmt.Printf("quantidade de alimento do(s) gato(s) (em gramas): %d gramas", cfunc(8))
+	fmt.Println("")
+
+	_, err := Animal("invalid animal")
+	if err != nil {
+		fmt.Println("animal inválido")
+	}
+
 }
